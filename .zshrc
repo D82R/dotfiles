@@ -1,35 +1,35 @@
-    #ZSH PATH#
+    #ZSH PATH
 export ZSH="/home/ds82/.oh-my-zsh"
 
-    #ACCESS TOKENS#
+    #ACCESS TOKENS
 export GITHUB_TOKEN=""
 export GITROB_ACCESS_TOKEN=""
 export CHAOS_KEY=""
 export SLACK_TOKEN=""
 
-    #ZSH THEME#
+    #ZSH THEME
 ZSH_THEME="robbyrussell"
 export TERM=xterm-256color
 
-    #ZSH PLUGS#
+    #ZSH PLUGS
 plugins=(git virtualenv virtualenvwrapper)
 source $ZSH/oh-my-zsh.sh
 
-    #UNALIAS#
+    #UNALIAS
 source ~/go/src/github.com/tomnomnom/gf/gf-completion.zsh
 unalias gau
 unalias gf
 
-    #GO PATH#
+    #GO PATH
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
-    #JAVA PATH#
+    #JAVA PATH
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 export PATH=$JAVA_HOME/bin:$PATH
 
-    #ALIASES#
+    #ALIASES
 alias ..="cd .." # Back one directory
 alias change_python_version="sudo update-alternatives --config python"
 alias cls="clear"
@@ -42,21 +42,21 @@ alias tls="cd ~/tools"
 alias zedit="vim ~/.zshrc"  # Edit .zshrc
 alias zsource="source ~/.zshrc"  #Source .zshrc
 
-    #CUSTOM FUNCTIONS#
+    #CUSTOM FUNCTIONS
 
-    #HTTPX#
+    #HTTPX
 
 xhttpx-csp(){   # gather subdomains through csp
 assetfinder $1 -subs-only |httpx -csp-probe -status-code -title
 }
 
-    #NUCLEI#
+    #NUCLEI
 
 xnuclei-req-method(){   # check request methods accepted on list of domains
     nuclei -l $1 -t /home/ds82/nuclei-templates/miscellaneous/detect-options-method.yaml -tags misc
 }
 
-    #RECON COMMANDS#
+    #RECON COMMANDS
     
 xarjun(){   # run arjun on single target
 	arjun -u $1 --headers "X-Hackerone: ds82" 
@@ -119,13 +119,13 @@ xwhatweb(){     # enumerate server details on given domain
 	whatweb -H -v --log-verbose whatweb.data $1
 }
 
-    #SQLMAP#
+    #SQLMAP
 
 xsqlmap(){  # sqlmap 
 	python3 ~/tools/sqlmap/sqlmap.py --url=$1 --user-agent=SQLMAP --delay=1 --timeout=15 --retries=2 --keep-alive --threads=5 --eta --dbms=MySQL --os=Linux --level=5 --risk=3 --banner --is-dba --dbs --tables --technique=BEUST -s /tmp/scan_report.txt --flush-session -t /tmp/scan_trace.txt --fresh-queries
 }
 
-    #UTILITY#
+    #UTILITY
 
 xcheckbind(){   # check nameserver bind version
 	dig -t txt -c chaos VERSION.BIND @$1
